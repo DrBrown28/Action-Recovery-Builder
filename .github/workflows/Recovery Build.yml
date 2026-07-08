@@ -140,12 +140,15 @@ jobs:
         if_true: twrp
         if_false: omni
 
-    - name: Sync Device Dependencies
+        - name: Sync Device Dependencies
       run: |
-        bash ${GITHUB_WORKSPACE}/scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/${{ steps.buildtree.outputs.value }}.dependencies
-        repo sync -j$(nproc --all)
+        if [ -f "${{ github.event.inputs.DEVICE_PATH }}/twrp.dependencies" ]; then
+          bash ${GITHUB_WORKSPACE}/scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/twrp.dependencies
+          repo sync -j$(nproc --all)
+        else
+          echo "No twrp.dependencies found, skipping dependencies sync"
+        fi
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-      continue-on-error: true
 
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
