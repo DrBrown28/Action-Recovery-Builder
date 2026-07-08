@@ -140,16 +140,6 @@ jobs:
         if_true: twrp
         if_false: omni
 
-        - name: Sync Device Dependencies
-      run: |
-        if [ -f "${{ github.event.inputs.DEVICE_PATH }}/twrp.dependencies" ]; then
-          bash ${GITHUB_WORKSPACE}/scripts/convert.sh ${{ github.event.inputs.DEVICE_PATH }}/twrp.dependencies
-          repo sync -j$(nproc --all)
-        else
-          echo "No twrp.dependencies found, skipping dependencies sync"
-        fi
-      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
-
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
