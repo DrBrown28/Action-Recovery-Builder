@@ -14,11 +14,11 @@ on:
       DEVICE_TREE_URL:
         description: 'DEVICE_TREE_URL'
         required: true
-        default: 'https://github.com/DrBrown28/TWRP-12.1-NP3'
+        default: 'https://github.com/DrBrown28/twrp_device_Meteoid_sm8735.git'
       DEVICE_TREE_BRANCH:
         description: 'DEVICE_TREE_BRANCH'
         required: true
-        default: 'Metroid-12.1'
+        default: 'twrp-16.0'
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
